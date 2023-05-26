@@ -1,0 +1,101 @@
+﻿@using OnlineShop.Data.ViewModels;
+@model NewComponentVM
+@using OnlineShop.Data.Enums;
+@{
+    ViewData["Title"] = "Izmjenite specifikacije komponente";
+}
+<div class="row">
+    <div class="col-md-8 offset-2 mb-5">
+        <p>
+            <h4>Izmjenite specifikacije komponente</h4>
+        </p>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-controller="Components" asp-action="Edit">
+                    @Html.Hidden("ComponentsTypesId", Model.ComponentsTypesId)
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="ComponentsTypesId" class="control-label"></label>
+                                <select asp-for="ComponentsTypesId" class="form-control">
+                                    <option value="1">Tastatura</option>
+                                    <option value="3">Miš</option>
+                                    <option value="2">Zvučnik</option>
+                                    <option value="4">Slušalice</option>
+                                    <option value="5">Web kamera</option>
+                                    <option value="6">Matična ploča</option>
+                                    <option value="7">Monitor</option>
+                                    <option value="8">Grafička kartica</option>
+                                    <option value="9">Kućište</option>
+                                    <option value="10">HDD/SDD</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Model" class="control-label"></label>
+                                <input asp-for="Model" class="form-control" />
+                                <span asp-validation-for="Model" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Warranty" class="control-label"></label>
+                                <input asp-for="Warranty" class="form-control" />
+                                <span asp-validation-for="Warranty" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Manufacturer" class="control-label"></label>
+                                <input asp-for="Manufacturer" class="form-control"/>
+                                <span asp-validation-for="Manufacturer" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Quantity" class="control-label"></label>
+                                <input asp-for="Quantity" class="form-control" />
+                                <span asp-validation-for="Quantity" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Price" class="control-label"></label>
+                                <input asp-for="Price" type="number" class="form-control" />
+                                <span asp-validation-for="Price" class="text-danger"></span>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="col-md-12">
+                              <div class="form-group">
+                                <label asp-for="ComponentsPictureUrl" class="control-label"></label>
+                                <input asp-for="ComponentsPictureUrl" class="form-control" />
+                                <span asp-validation-for="ComponentsPictureUrl" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Description" class="control-label"></label>
+                                <textarea asp-for="Description" class="form-control"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4 offset-4 text-center mt-2">
+                        <img width="100%" id="ProfilePictureUrlPreview" />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Ažurirajte" class="btn btn-outline-success float-end"/>
+                                <a class="btn btn-outline-secondary" asp-action="Index" asp-route-ComponentsTypesId="@Model.ComponentsTypesId">
+                                    Prikaži sve
+                                </a>
+                    </div>
+                         </form>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+@section Scripts{
+    <script>
+$(document).ready(function() {
+var output = document.getElementById("ProfilePictureUrlPreview");
+            output.src = $("#ComponentsPictureUrl").val();
+});
+        $("#ComponentsPictureUrl").on("change", function() {
+            var output = document.getElementById("ProfilePictureUrlPreview");
+            output.src = $(this).val();
+        })
+    </script>
+}

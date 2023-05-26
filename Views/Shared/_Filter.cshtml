@@ -1,0 +1,68 @@
+﻿@using OnlineShop.Data.Enums
+@using System.Linq
+@model Laptop
+<link rel="stylesheet" href="/css/filter.css" />
+<div class="row ms-2"  style="position:absolute; left:0;">
+    <div class="hamburger-menu">
+        <span class="text-nowrap" style="font-size: 2.1vw;">PRIKAŽI FILTERE <i class="fa-solid fa-filter"></i></span>
+    </div>
+<form asp-action="FilterByBrand" asp-controller="Laptops" method="get" class="filter-form" id="filterform">
+     @Html.Hidden("LaptopsTypesId", Model.LaptopsTypesId)
+    <div class="col mb-2">
+ <span class="pe-2">Sortiraj:</span>
+    <div class="dropdown">
+        <button id="btnSort" onclick="myFunction()" type="button" class="dropbtn bg-white border-1" style="font-size:13px;">-- Izaberite kriterijum --</button>
+        <div id="sortDropdown" class="dropdown-content">
+        <input class="border-bottom-0" asp-action="Sort" asp-route-id="5" type="submit" value="Cijena: od najmanje ka najvećoj"/>
+        <input asp-action="Sort" asp-route-id="6" type="submit" value="Cijena: od najveće ka najmanjoj"/>
+        </div>
+    </div>
+    <button id="close-btn" class="btn-close pe-5" onclick="closeForm()"></button>
+    </div>
+    <div class="col">
+    
+    <label asp-for="Manufacturer" class="control-label fw-bold mb-2">Naziv proizvođača:</label>
+    <br />
+
+    <select asp-for="Manufacturer" asp-items="Html.GetEnumSelectList<Manufacturer>()" >
+        <option value="0">Svi</option>
+    </select>
+   </div>
+   <div class="col">
+       <label class="control-label fw-bold mb-2 mt-1">Cijena:</label>
+       <br />
+       <input class="border-0 bg-transparent fw-normal priceinput ps-0" type="submit"  asp-route-id="0" asp-action="FilterByPrice" value="Bilo koja">
+       <br />
+       <input class="mt-1 border-0 bg-transparent fw-normal priceinput ps-0" type="submit" asp-route-id="1" asp-action="FilterByPrice" value="Od 500 - 1000 KM">
+       
+       <br />
+       <input class="mt-1 border-0 bg-transparent fw-normal priceinput ps-0" type="submit" asp-route-id="2" asp-action="FilterByPrice" value="Od 1000 - 1500 KM">
+       <br />
+       
+       <input class="mt-1 border-0 bg-transparent fw-normal priceinput ps-0" type="submit" asp-route-id="3" asp-action="FilterByPrice" value="Od 1500 - 2000 KM">
+       <br />
+       <input class="mt-1 mb-2 border-0 bg-transparent fw-normal priceinput ps-0" asp-route-id="4" asp-action="FilterByPrice" type="submit" value="Iznad 2000 KM">
+       <br />
+       <input value="0"  name="minPrice" type="number" placeholder="Min" style="width:60px;"/> KM -
+       <input value="5000" name="maxPrice" type="number" placeholder="Max"  style="width:60px;"/> KM
+   </div>
+   <div class="col mt-2">
+       <input type="submit" value="Filter" class="btn-primary"/>
+   </div>
+</form>
+</div>  
+
+
+    <script language="javascript">
+function myFunction(){
+    document.getElementById("sortDropdown").classList.toggle("show");
+}
+  document.querySelector('.hamburger-menu').addEventListener('click', function() {
+    document.querySelector('.filter-form').classList.toggle("show");
+      document.getElementById("filterform").style.zIndex = "9";
+  });
+function closeForm() {
+      document.getElementById("filterform").style.display = "none";
+}
+
+    </script>

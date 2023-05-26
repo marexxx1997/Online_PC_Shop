@@ -1,0 +1,151 @@
+﻿<link rel="stylesheet" href="/css/laptop.css" />
+@model Laptop
+
+@{
+    ViewData["Title"] = "Laptop details";
+
+}
+@Html.Hidden("LaptopsTypesId", Model.LaptopsTypesId)
+<div class="row">
+        <div class="col-md-6 offset-3">
+            <div class="card mb-5">
+                <div class="row g-0">
+                    <div class="col-md-12">
+                        <div class="card-header text-white bg-info">
+                            <p class="card-text">
+                                <h5 class="card-title">
+                                    @Model.Model   
+                                </h5>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 align-self-center">
+                        <img src="@Model.ProfilePictureUrl" width="100%" alt="@Model.Model">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <p class="card-text"><b>Proizvođač: <br> </b>@Model.Manufacturer 
+                            @if(Convert.ToInt32(Model.Manufacturer)==1)
+                            {
+                                <a asp-action="FilterByBrand" asp-route-Manufacturer="@Convert.ToInt32(Model.Manufacturer)" asp-route-minPrice="0" asp-route-maxPrice="5000" asp-route-LaptopsTypesId="@Model.LaptopsTypesId">
+                                <img src="https://www.univerzalno.com/wp-content/uploads/2019/05/hp.jpg" />
+                                </a>
+                            }
+                            @if(Convert.ToInt32(Model.Manufacturer)==2)
+                            {
+                                <a asp-action="FilterByBrand" asp-route-Manufacturer="@Convert.ToInt32(Model.Manufacturer)" asp-route-minPrice="0" asp-route-maxPrice="5000" asp-route-LaptopsTypesId="@Model.LaptopsTypesId">
+                                <img src="https://www.univerzalno.com/wp-content/uploads/2019/05/dell.jpg"/>
+                                </a>
+                            }
+                            @if(Convert.ToInt32(Model.Manufacturer)==3)
+                            {
+                                <a asp-action="FilterByBrand" asp-route-Manufacturer="@Convert.ToInt32(Model.Manufacturer)" asp-route-minPrice="0" asp-route-maxPrice="5000" asp-route-LaptopsTypesId="@Model.LaptopsTypesId"> 
+                                <img src="https://www.univerzalno.com/wp-content/uploads/2019/05/acer.jpg"/>
+                               </a>
+                            }
+                            @if(Convert.ToInt32(Model.Manufacturer)==4)
+                            {
+                                <a asp-action="FilterByBrand" asp-route-Manufacturer="@Convert.ToInt32(Model.Manufacturer)" asp-route-minPrice="0" asp-route-maxPrice="5000" asp-route-LaptopsTypesId="@Model.LaptopsTypesId">
+                                <img src="https://www.univerzalno.com/wp-content/uploads/2019/05/asus.jpg"/>
+                                </a>
+                            }
+                            @if(Convert.ToInt32(Model.Manufacturer)==5){
+                                <a asp-action="FilterByBrand" asp-route-Manufacturer="@Convert.ToInt32(Model.Manufacturer)" asp-route-minPrice="0" asp-route-maxPrice="5000" asp-route-LaptopsTypesId="@Model.LaptopsTypesId">
+                                <img src="https://www.univerzalno.com/wp-content/uploads/2019/05/apple.jpg" />
+                                </a>
+                            }
+
+                            </p>
+                            <p class="card-text"><b>Grafička kartica:  <br> </b>@Model.GraphicCard</p>
+                            <p class="card-text"><b>Procesor:  <br> </b>@Model.Processor</p>
+                            <p class="card-text">
+                                <b>
+                                Veličina ekrana: <br>
+                                </b>
+                                @Model.ScreenSize
+                            </p>
+                             <p class="card-text">
+                                <b>
+                                Hard disk: <br>
+                                </b>
+                                @Model.HardDisc
+                            </p>
+                             <p class="card-text">
+                                <b>
+                                RAM memorija: <br>
+                                </b>
+                                @Model.RAM
+                            </p>
+                             <p class="card-text">
+                                <b>
+                                Operativni sistem: <br>
+                                </b>
+                                @Model.OS
+                            </p>
+                            <p class="card-text ">
+                                <b>Status: </b>  <br>
+                                @if(Model.Quantity > 0)
+                                {
+                                    <span class="badge bg-success text-white">DOSTUPAN</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger text-white">NEDOSTUPAN</span>
+                                }
+                            </p>
+                            <p class="card-text">
+                                <b>
+                                Opis: <br>
+                                </b>
+                                @Model.Description
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="row text-center justify-content-center fw-bold fs-4" style="color:crimson">
+                            @Model.Price.ToString("0.00") KM
+                        </div>
+                    <div class="col-md-12">
+                        <div class="card-footer ">
+                            <p class="card-text">
+                                @Html.Hidden("LaptopsTypesId", Model.LaptopsTypesId)
+                            @if (Model.LaptopsTypesId == 3)
+                            {
+                                <a class="btn btn-outline-primary" asp-action="Index">
+                                    Nazad
+                                </a>
+                            }
+                            else
+                            {
+                                 <a class="btn btn-outline-primary" asp-action="GetAllPC">
+                                    Nazad
+                                </a>
+                            }
+                            @if (User.Identity.IsAuthenticated)
+                                {
+                                    @if(Model.Quantity>0)
+                                    {
+                                    <a class="btn btn-success text-white float-end btn-buy" asp-controller="Orders" asp-action="AddToShoppingCart" asp-route-id="@Model.Id"
+                                asp-route-type="laptop">
+                                            <i class="bi bi-cart-plus"></i> Dodaj u korpu</a>
+                                    }
+                                    else
+                                    {
+                                        <a class="btn btn-success text-white float-end btn-buy" asp-controller="Orders" asp-action="AddToShoppingCart" asp-route-id="@Model.Id"
+                                asp-route-type="laptop" style="pointer-events:none">
+                                            <i class="bi bi-cart-plus"></i> Dodaj u korpu</a>
+                                    }
+                                }
+                                else
+                                {
+                                    <a class="btn btn-success text-white float-end btn-buy" asp-controller="Account" asp-action="Login" asp-route-id="@Model.Id"
+                                asp-route-type="laptop">
+                                        <i class="bi bi-cart-plus"></i> Dodaj u korpu</a>
+                                }
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>

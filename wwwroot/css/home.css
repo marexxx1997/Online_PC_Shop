@@ -1,0 +1,31 @@
+﻿body {
+}
+
+.bg-image-laptop {
+    background: url('../images/laptop-image.jpeg') no-repeat;
+    background-size: cover;
+    background-position:center;
+}
+
+.bg-image-computer {
+    background: url('../images/computer-image.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.bg-image-equipment {
+    background: url('../images/pc-equipment-image4.png') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.card-body {
+    height: 565px;
+    transition: transform 0.5s ease;
+}
+
+    .card-body:hover {
+        box-shadow: 0px 0px 10px #333;
+        border: 1px solid #333;
+        transform: scale(1.1);
+    }

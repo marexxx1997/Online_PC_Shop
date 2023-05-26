@@ -1,0 +1,51 @@
+﻿@using OnlineShop.Data.ViewModels;
+@model LoginVM;
+
+@{
+    ViewData["Title"] = "Log in to your account";
+}
+
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <p>
+            <h4>Prijavite se na Vaš nalog</h4>
+        </p>
+
+        @if(TempData["Error"] != null)
+        {
+            <div class="col-md-12 alert alert-danger">
+                <span><b>@TempData["Error"]</b></span>
+            </div>
+
+        }
+
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="Login">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="EmailAddress" class="control-label"></label>
+                        <input asp-for="EmailAddress" class="form-control"/>
+                        <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Password" class="control-label"></label>
+                        <input asp-for="Password" class="form-control"/>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <span>
+                        <a class="text-decoration-none" href="mailto:admin@pcshop.com">Zaboravili ste lozinku?</a>
+                    </span>
+                    <br />
+                    <div class="form-group mt-3">
+                       
+                        <input class="btn btn-outline-dark float-end" type="submit" value="Prijavi se"/>
+                       
+                        <a class="btn btn-outline-danger" asp-controller="Laptops" asp-action="Index">Odustani</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,102 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.search-form{
+    display:inline-flex;
+}
+
+.navbar{
+    background:rgb(13,202,240)!important;
+}
+@media (min-width:768px) and (max-width: 868px) {
+    .navbar {
+        font-size: 10px;
+    }
+
+        .navbar input {
+            font-size: 12px;
+            width: 100px;
+        }
+
+        .navbar button {
+            font-size: 12px;
+        }
+}
+@media (min-width:867px) and (max-width: 992px) {
+    .navbar {
+        font-size: 13px;
+    }
+
+        .navbar input {
+            font-size: 13px;
+            width: 100px;
+        }
+
+        .navbar button {
+            font-size: 13px;
+        }
+}
+
+/*.container{
+    margin-right:0px;
+}*/
+/*@media (min-width:722px) and (max-width: 868px) {
+    .navbar {
+        font-size: 10px;
+    }
+
+        .navbar input {
+            font-size: 12px;
+            width: 100px;
+        }
+
+        .navbar button {
+            font-size: 12px;
+        }
+}
+
+@media (min-width:867px) and (max-width: 992px){
+    .navbar {
+        font-size: 13px;
+    }
+
+        .navbar input {
+            font-size: 13px;
+            width:100px;
+        }
+
+        .navbar button {
+            font-size: 13px;
+        }
+}
+
+@media (max-width:721px){
+    .navbar {
+        font-size: 9px;
+    }
+
+        .navbar input {
+            font-size: 9px;
+            width: 50px;
+        }
+
+        .navbar button {
+            font-size: 9px;
+        }
+}*/

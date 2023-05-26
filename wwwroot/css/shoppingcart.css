@@ -1,0 +1,89 @@
+﻿body {
+}
+.paypal-button {
+    background-color: #003087; /* PayPal blue */
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Center button text */
+}
+
+    /*.paypal-button:before {
+        content: "";
+        background: url(https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_150x38.png) no-repeat;
+        width: 150px;
+        height: 38px;
+        display: inline-block;*/ /* Center PayPal logo */
+        /*margin-right: 10px;
+    }*/
+
+    .paypal-button:hover {
+        background-color: white;
+        color: #003087;
+        text-align: center;
+        text-decoration: none;
+        border: 2px solid #003087;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .paypal-button::after {
+        content: "";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        font-size: 1.2em;
+        color: white;
+        content: "\f290"; /* "shopping-cart" icon */
+        margin-left: 10px;
+    }
+    .paypal-button:hover::after {
+        content: "";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        font-size: 1.2em;
+        color: #003087;
+        content: "\f290"; /* "shopping-cart" icon */
+        margin-left: 10px;
+        font-weight: bold;
+    }
+
+.add-more-items {
+    background-color: #4CAF50; /* Green background */
+    border: none; /* Remove border */
+    color: white; /* White text */
+    text-align: center; /* Center text */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Display as inline block element */
+    font-size: 16px; /* Increase font size */
+    cursor: pointer; /* Add a cursor on hover */
+    transition: background-color 0.3s ease; /* Add a smooth background color transition */
+    width:184px;
+}
+    .add-more-items:hover {
+        background-color: white;
+        color: #4CAF50;
+        border: 2px solid #4CAF50;
+        font-weight: bold;
+    }
+.add-more-items::after {
+    content: ""; /* Clear content */
+    font-family: "Font Awesome 5 Free"; /* Specify the font family */
+    font-weight: 900; /* Specify the font weight */
+    font-size: 1.2em; /* Specify the font size */
+    padding-left: 10px; /* Add some padding */
+    color: white; /* Specify the color */
+    /* Add the icon */
+    content: "\f067"; /* using unicode */
+}
+    .add-more-items:hover::after {
+        content: ""; /* Clear content */
+        font-family: "Font Awesome 5 Free"; /* Specify the font family */
+        font-weight: 900; /* Specify the font weight */
+        font-size: 1.2em; /* Specify the font size */
+        padding-left: 10px; /* Add some padding */
+        color: #4CAF50; /* Specify the color */
+        /* Add the icon */
+        content: "\f067"; /* using unicode */
+        font-weight:bold;
+    }

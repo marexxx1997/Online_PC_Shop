@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Components>
+
+    <div class="row mb-5" style="margin-left: 18vw;">
+    @foreach(var item in Model)
+    {
+        <div class="col-md-4 col-xs-6 border-primary mb-3">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-12">
+                        <div class="card-header text-white bg-info">
+                            <p class="card-text">
+                                <h5 class="card-title">
+                                    @item.Model
+                                    @if(User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                                    {
+                                         <a class="text-white float-end" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a>
+                                    }
+                                    
+                                </h5>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 align-self-center">
+                        <img src="@item.ComponentsPictureUrl" width="100%" alt="@item.Model">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <p class="card-text"><b>Proizvođač: <br> </b>@item.Manufacturer</p>
+                            <p class="card-text ">
+                                <b>Status: </b>  <br>
+                                @if(item.Quantity > 0)
+                                {
+                                    <span class="badge bg-success text-white">DOSTUPAN</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger text-white">NEDOSTUPAN</span>
+                                }
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="row text-center justify-content-center fw-bold" style="color:crimson">
+                            @item.Price.ToString("0.00") KM
+                        </div>
+                    <div class="col-md-12">
+                        <div class="card-footer ">
+                            <p class="card-text">
+                                <a class="btn btn-outline-primary" asp-action="Details" asp-route-id="@item.Id">
+                                    <i class="bi bi-eye-fill"></i> Prikaži detalje
+                                </a>
+                                <a class="btn btn-success text-white float-end btn-buy" asp-controller="Orders" asp-action="AddToShoppingCart" asp-route-id="@item.Id">
+                                <i class="bi bi-cart-plus"></i> Dodaj u korpu</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

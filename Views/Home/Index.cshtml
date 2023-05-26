@@ -1,0 +1,29 @@
+﻿<link rel="stylesheet" href="/css/home.css" />
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="d-flex justify-content-center">
+    <a class="text-decoration-none" asp-controller="Laptops" asp-action="Index">
+    <div class="card" style="width: 18rem; height:83vh;">
+        <div class="card-body bg-image-laptop d-flex align-items-center justify-content-center">
+            <h2 class="card-title text-center text-white">LAPTOPI</h2>
+        </div>
+    </div>
+    </a>
+     <a class="text-decoration-none" asp-controller="Laptops" asp-action="GetAllPC">
+    <div class="card" style="width: 18rem; height:83vh;">
+        <div class="card-body bg-image-computer d-flex align-items-center justify-content-center">
+            <h2 class="card-title text-center text-white">KOMPJUTERI</h2>
+        </div>
+    </div>
+    </a>
+    <a class="text-decoration-none" asp-controller="Components" asp-action="GetAll">
+    <div class="card" style="width: 18rem; height:83vh;">
+        <div class="card-body text-center bg-image-equipment d-flex align-items-center justify-content-center">
+            <h2 class="card-title text-white">PC OPREMA</h2>
+        </div>
+    </div>
+    </a>
+</div>

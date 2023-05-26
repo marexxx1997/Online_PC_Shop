@@ -1,0 +1,9 @@
+﻿@using OnlineShop.Data.ViewModels
+@model ComponentsVM
+
+<select>
+    @foreach (var manufacturer in Model.ManufacturerList)
+    {
+        <option value="@manufacturer.Value">@manufacturer.Text</option>
+    }
+</select>

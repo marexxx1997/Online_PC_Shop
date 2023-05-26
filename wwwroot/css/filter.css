@@ -1,0 +1,101 @@
+﻿body {
+}
+
+.priceinput:hover {
+    color: #0DCAF0;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    overflow: auto;
+    border: 1px;
+    z-index: 1;
+}
+ .dropdown-content input {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        font-size: 11px;
+        background-color:white;
+        border-width:thin;
+    }
+    .dropdown-content input:hover {
+        color: #0DCAF0;
+    }
+
+.show {
+    display: block;
+}
+#close-btn{
+    display:none;
+}
+.hamburger-menu{
+    display:none;
+}
+@media (max-width: 768px) {
+    .filter-form {
+        display: none;
+        position: fixed;
+        border: 3px solid #f1f1f1;
+        background-color: white;
+        width: 37vw;
+        height:100%;
+        top:0;
+        left:0;
+    }
+    .filter-form.show {
+        display: block;
+    }
+
+    .hamburger-menu {
+        display: block;
+        position: fixed;
+        cursor: pointer;
+        background-color: white;
+        left:-2px;
+        top:50%;
+        font-weight:bold;
+    }
+
+    #close-btn {
+        position: absolute;
+        top: 0;
+        right: -3vw;
+        display:block;
+    }
+
+}
+@media (min-width:768px) and (max-width: 1200px) {
+    .filter-form {
+        position: fixed;
+        left: 0;
+        width: 175px;
+        font-size: 11px;
+        white-space: nowrap;
+    }
+
+        .filter-form span {
+            white-space: pre-wrap;
+        }
+
+    .dropdown {
+        margin-top: 5px;
+    }
+        .dropdown button {
+            font-size: 11px!important;
+        }
+
+    .filter-form input[name="minPrice"] {
+        width: 50px!important;
+    }
+
+    .filter-form input[name="maxPrice"] {
+        width: 50px!important;
+    }
+}

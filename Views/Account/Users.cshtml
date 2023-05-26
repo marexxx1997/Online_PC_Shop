@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ApplicationUser>
+<link rel="stylesheet" href="/css/users.css" />
+@{
+    ViewData["Title"]="List of all users";
+}
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <p>
+            <h4>Spisak svih korisnika</h4>
+        </p>
+        <table class="table bg-white">
+            <thead>
+                <tr>
+                    <th>Ime i prezime</th>
+                    <th>Korisničko ime</th>
+                    <th>E-mail</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model)
+                {
+                    <tr>
+                        <td class="align-middle">
+                            @Html.DisplayFor(modelItem=>item.FullName)
+                        </td>
+                        <td class="align-middle">
+                            @Html.DisplayFor(modelItem=>item.UserName)
+                        </td>
+                        <td class="align-middle">
+                            @Html.DisplayFor(modelItem=>item.Email)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id"><i class="fa-solid fa-user-pen"></i></a>
+                            
+                        </td>
+                        <td>
+                            
+                            <a asp-action="DeleteUser" asp-route-id="@item.Id"><i class="fa-solid fa-user-xmark"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,132 @@
+﻿@model NewLaptopVM
+@using OnlineShop.Data.Enums;
+@{
+    ViewData["Title"] = "Izmjenite specifikacije laptopa/računara";
+}
+<div class="row">
+    <div class="col-md-8 offset-2 mb-5">
+        <p>
+            <h4>Izmjenite specifikacije laptopa/računara</h4>
+        </p>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="Edit">
+                    @Html.Hidden("LaptopsTypesId", Model.LaptopsTypesId)
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="LaptopsTypesId" class="control-label"></label>
+                                <select asp-for="LaptopsTypesId" class="form-control">
+                                    <option value="3">Laptop</option>
+                                    <option value="4">Računar</option>
+                                </select>
+                                <span asp-validation-for="LaptopsTypesId" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Model" class="control-label"></label>
+                                <input asp-for="Model" class="form-control" />
+                                <span asp-validation-for="Model" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ScreenSize" class="control-label"></label>
+                                <input asp-for="ScreenSize" class="form-control" />
+                                <span asp-validation-for="ScreenSize" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="OS" class="control-label"></label>
+                                <input asp-for="OS" class="form-control" />
+                                <span asp-validation-for="OS" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Warranty" class="control-label"></label>
+                                <input asp-for="Warranty" class="form-control" />
+                                <span asp-validation-for="Warranty" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="HardDisc" class="control-label"></label>
+                                <input asp-for="HardDisc" class="form-control" />
+                                <span asp-validation-for="HardDisc" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="RAM" class="control-label"></label>
+                                <input asp-for="RAM" class="form-control" />
+                                <span asp-validation-for="RAM" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Manufacturer" class="control-label"></label>
+                                <select asp-for="Manufacturer" class="form-control" asp-items="Html.GetEnumSelectList<Manufacturer>()"></select>
+                                <span asp-validation-for="Manufacturer" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="GraphicCard" class="control-label"></label>
+                                <select asp-for="GraphicCard" class="form-control" asp-items="Html.GetEnumSelectList<GraphicCard>()"></select>
+                                <span asp-validation-for="GraphicCard" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Processor" class="control-label"></label>
+                                <input asp-for="Processor" class="form-control" />
+                                <span asp-validation-for="Processor" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Quantity" class="control-label"></label>
+                                <input asp-for="Quantity" class="form-control" />
+                                <span asp-validation-for="Quantity" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Price" class="control-label"></label>
+                                <input asp-for="Price" type="number" class="form-control" />
+                                <span asp-validation-for="Price" class="text-danger"></span>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="col-md-12">
+                              <div class="form-group">
+                                <label asp-for="ProfilePictureUrl" class="control-label"></label>
+                                <input asp-for="ProfilePictureUrl" class="form-control" />
+                                <span asp-validation-for="ProfilePictureUrl" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Description" class="control-label"></label>
+                                <textarea asp-for="Description" class="form-control"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4 offset-4 text-center mt-2">
+                        <img width="100%" id="ProfilePictureUrlPreview" />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Ažurirajte" class="btn btn-outline-success float-end"/>
+                         @if (Model.LaptopsTypesId == 3)
+                            {
+                                <a class="btn btn-outline-secondary" asp-action="Index">
+                                    Prikaži sve
+                                </a>
+                            }
+                            else
+                            {
+                                 <a class="btn btn-outline-secondary" asp-action="GetAllPC">
+                                    Prikaži sve
+                                </a>
+                            }
+                    </div>
+                         </form>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+@section Scripts{
+    <script>
+$(document).ready(function() {
+var output = document.getElementById("ProfilePictureUrlPreview");
+            output.src = $("#ProfilePictureUrl").val();
+});
+        $("#ProfilePictureUrl").on("change", function() {
+            var output = document.getElementById("ProfilePictureUrlPreview");
+            output.src = $(this).val();
+        })
+    </script>
+}

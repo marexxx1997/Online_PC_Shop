@@ -1,0 +1,71 @@
+﻿@using OnlineShop.Data.ViewModels
+@model ShoppingCartVM
+<link rel="stylesheet" href="/css/shoppingcart.css" />
+@{
+    ViewData["Title"] = "Shopping cart summary";
+}
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h4>Spisak svih vaših narudžbi</h4>
+        </p>
+        <table class="table" style="background-color:white;">
+            <thead>
+                <tr>
+                    <th>Količina</th>
+                    <th>Laptop</th>
+                    <th>Cijena</th>
+                    <th>Iznos</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model.ShoppingCart.ShoppingCartItems)
+                {
+                    <tr>
+                        @if(item.Laptop != null){
+                        <td class="align-middle">@item.Amount</td>
+                        <td class="align-middle" style="display: flex; justify-content: flex-start; align-items: center;"><span style="width:100px;">@item.Laptop.Model</span> <span class="ms-3"><img src="@item.Laptop.ProfilePictureUrl" width="100%" alt="@item.Laptop.Model"  style="object-fit:contain; height:6vw; width:100px;"/> </span></td>
+                        <td class="align-middle">@item.Laptop.Price.ToString("F") KM</td>
+                        <td class="align-middle">@((item.Amount*item.Laptop.Price).ToString("F")) KM</td>
+                        <td class="align-middle" style="font-size:20px;">
+                            <a class="text-danger" asp-controller="Orders" asp-action="RemoveItemFromShoppingCart" asp-route-id="@item.Laptop.Id" asp-route-type="laptop"><i class="bi bi-cart-dash-fill"></i></a>|<a class="text-success" asp-controller="Orders" asp-action="AddToShoppingCart" asp-route-id="@item.Laptop.Id" asp-route-type="laptop"><i class="bi bi-cart-plus-fill"></i></a>
+                            </td>
+                        }
+                        else
+                        {
+                        <td class="align-middle">@item.Amount</td>
+                        <td class="align-middle" style="display: flex; justify-content: flex-start; align-items: center;"><span style="width:100px;">@item.Component.Model</span> <span class="ms-3"><img src="@item.Component.ComponentsPictureUrl" width="100%" alt="@item.Component.Model" style="object-fit:contain; height:6vw; width:100px;"/></span></td>
+                        <td class="align-middle">@item.Component.Price.ToString("F") KM</td>
+                        <td class="align-middle">@((item.Amount*item.Component.Price).ToString("F")) KM</td>
+                        <td class="align-middle" style="font-size:20px;">
+                            <a class="text-danger" asp-controller="Orders" asp-action="RemoveItemFromShoppingCart" asp-route-id="@item.Component.Id" asp-route-type="component"><i class="bi bi-cart-dash-fill"></i></a>|<a class="text-success" asp-controller="Orders" asp-action="AddToShoppingCart" asp-route-id="@item.Component.Id" asp-route-type="component"><i class="bi bi-cart-plus-fill"></i></a>
+                            </td>
+                        }
+
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2"></td>
+                    <td><b>Ukupan iznos:</b></td>
+                    <td>
+                        @Model.ShoppingCartTotal.ToString("F") KM
+                    </td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+        <div class="text-center">
+             <div class="btn-group">
+                 <a class="btn paypal-button" asp-action="CompleteOrder">
+                     Završite narudžbu
+                 </a>
+                 <a class="btn add-more-items" asp-controller="Laptops" asp-action="Index">
+                     Dodaj još stavki
+                 </a>
+             </div>
+        </div>
+    </div>
+</div>
